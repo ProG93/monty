@@ -1,125 +1,87 @@
 #include "monty.h"
 
-/**
- * _sub - sub top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+/*
+ * _add - adds top two elements
+ * @stack: begin of stack
+ * @line_number: number of line
+ */
+
+void _add(stack_t **stack, unsigned int line_number)
+{
+	int i = 0;
+
+	if (var.stack_len < 2)
+	{
+		perror("cannot add");
+		exit(EXIT_FAILURE);
+	}
+	i += (*stack)->i;
+	_pop(stack, line_number);
+	(*stack)->i += i;
+}
+
+/*
+ * _sub - adds top two elements
+ * @stack: begin of stack
+ * @line_number: number of line
  */
 void _sub(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = *stack;
-	int sub = 0, i = 0;
+	int i;
 
-	if (tmp == NULL)
-	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+	if (var.stack_len < 2)
+        {
+		dprintf(STDOUT_FILENO, "L%u: can't sub, stack short", line_number)
 		exit(EXIT_FAILURE);
-	}
-
-	while (tmp)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-
-	if (stack == NULL || (*stack)->next == NULL || i <= 1)
-	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	sub = (*stack)->next->n - (*stack)->n;
+        }
+	i = (*stack)->i;
 	_pop(stack, line_number);
-
-	(*stack)->n = sub;
+	(*stack)->i -= i;
 }
 
-/**
- * _mul - mul top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+
+
+
+/*
+ * _mul - adds top two elements
+ * @stack: begin of stack
+ * @line_number: number of line
  */
 void _mul(stack_t **stack, unsigned int line_number)
 {
-	int aux;
+	int i;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (var.stack_len < 2)
 	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
-		free(var_global.buf);
-		fclose(var_global.file);
-		free_dlistint(*stack);
+		dprintf(STDOUT_FILENO, "L%u: can't mul\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		aux = (*stack)->n;
-		_pop(stack, line_number);
-		(*stack)->n *= aux;
-	}
+	i = (*stack)->i;
+	_pop(stack, line_number);
+	(*stack)->i *=i;
 }
 
-/**
- * _div - div top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+/*
+ * _div - adds top two elements
+ * @stack: begin of stack
+ * @line_number: number of line
  */
 void _div(stack_t **stack, unsigned int line_number)
 {
-	int div = 0;
+	int i;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (var.stack_len < 2)
 	{
-		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
-		free(var_global.buf);
-		fclose(var_global.file);
-		free_dlistint(*stack);
+		dprintf(STDOUT_FILENO, "L%u: can't div\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	else if ((*stack)->n == 0)
+	i = (*stack)->i;
+	_pop(stack, line_number);
+	if (i == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n", line_number);
-		free(var_global.buf);
-		fclose(var_global.file);
-		free_dlistint(*stack);
+		dprintf(STDOUT_FILENO, "L%u: div by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		div = (*stack)->n;
-		_pop(stack, line_number);
-		(*stack)->n /= div;
-	}
-}
+	(*stack)->i /= i;
 
-/**
- * _mod - mod top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
- */
-void _mod(stack_t **stack, unsigned int line_number)
-{
-	int mod = 0;
-
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
-		free(var_global.buf);
-		fclose(var_global.file);
-		free_dlistint(*stack);
-		exit(EXIT_FAILURE);
-	}
-	else if ((*stack)->n == 0)
-	{
-		fprintf(stderr, "L%d: division by zero\n", line_number);
-		free(var_global.buf);
-		fclose(var_global.file);
-		free_dlistint(*stack);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		mod = (*stack)->n;
-		_pop(stack, line_number);
-		(*stack)->n %= mod;
-	}
 }
