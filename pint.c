@@ -1,6 +1,6 @@
 #include "monty.h"
 
-/*
+/**
  * _pint - print value on top
  * @stack: head of stack
  * @line_number: number of lines

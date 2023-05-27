@@ -1,12 +1,13 @@
 #include "monty.h"
+#include <stdio.h>
 
 /* global struct to hold flag for queue and stack length */
 var_t var;
 
 /**
  * main - Monty bytecode interpreter
- * @argc: number of arguments passed
- * @argv: array of argument strings
+ * @ac: number of arguments passed
+ * @av: array of argument strings
  *
  * Return: EXIT_SUCCESS on success or EXIT_FAILURE on failure
  */

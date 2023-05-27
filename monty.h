@@ -1,5 +1,7 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
+#define _POSIX_C_SOURCE 200809L
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +11,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <ctype.h>
 
 /**
  * struct var_s - struct to contain the main variables of the Monty interpreter
@@ -80,5 +83,6 @@ void free_stack(int exit_s, void *c);
 void _fs_close(int exit_s, void *c);
 void free_lineptr(int exit_s, void *c);
 stack_t *add_node(stack_t **stack, const int n);
+int _isdigit(char *c);
 
 #endif

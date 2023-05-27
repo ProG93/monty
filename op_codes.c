@@ -1,6 +1,6 @@
 #include "monty.h"
 
-/*
+/**
  * get_op - check valid opcodes
  * @op: check op
  * @stack: beginning of stack
@@ -10,7 +10,7 @@ void get_op(char *op, stack_t **stack, unsigned int line_number)
 {
 	size_t n;
 	instruction_t valid_ops[] = {
-		{"push", _pushcode},
+		{"push", pushcode},
 		{"pall", _pall},
 		{"pint", _pint},
 		{"pop", _pop},
@@ -30,7 +30,7 @@ void get_op(char *op, stack_t **stack, unsigned int line_number)
 		{NULL, NULL}
 	};
 
-	for (n = 0; valid_ops[n].opcode != NULL; i++)
+	for (n = 0; valid_ops[n].opcode != NULL; n++)
 	{
 		if (strcmp(valid_ops[n].opcode, op) == 0)
 		{

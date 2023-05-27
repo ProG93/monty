@@ -1,12 +1,12 @@
 #include "monty.h"
 
-/*
- * free_ptr - free line pointer
- * @exit_s - exit status
+/**
+ * free_lineptr - free line pointer
+ * @exit_s: - exit status
  * @c: pointer to line
  */
 
-void free_ptr(int exit_s, void *c)
+void free_lineptr(int exit_s, void *c)
 {
 	char **lineptr = c;
 

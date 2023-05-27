@@ -1,6 +1,6 @@
 #include "monty.h"
 
-/*
+/**
  * free_stack - frees the stack
  * @exit_s: exit status
  * @c: pointer to stack
@@ -16,7 +16,7 @@ void free_stack(int exit_s, void *c)
 	stack = (stack_t **)c;
 	if (*stack)
 	{
-		(*stack)->prev-> = NULL;
+		(*stack)->prev->next = NULL;
 		(*stack)->prev = NULL;
 	}
 	while (*stack != NULL)

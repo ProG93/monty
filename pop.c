@@ -1,6 +1,6 @@
 #include "monty.h"
 
-/*
+/**
  * _pop - remove from top stack
  * @stack: head of stack
  * @line_number: number of lines

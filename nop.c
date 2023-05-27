@@ -1,6 +1,6 @@
 #include "monty.h"
 
-/*
+/**
  * _nop - no ops performed
  * @stack: head of stack
  * @line_number: number of current ops
